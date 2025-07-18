@@ -11,7 +11,7 @@ private:
     enum state {Red, Green, Yellow};
     state current;
     bool stopSignal;
-    std::mutex mt;
+    std::mutex mt;//to protect the code from crashing as we need to getstate and change colour at the same time
 public:
     trafficlight(int dir, int start_state); //start state is either red or green
     void changecolour();

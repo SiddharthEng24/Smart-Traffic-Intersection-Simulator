@@ -5,7 +5,7 @@
 #include "trafficlight.h"
 #include <chrono>;
 #include <thread>;
-
+//whenever we make the light we're gonna make a thread
 trafficlight::trafficlight(int dir, int start_state) {
     this->direction = dir;
     this->stopSignal = false;
@@ -14,19 +14,17 @@ trafficlight::trafficlight(int dir, int start_state) {
 }
 void trafficlight::changecolour() {
     while (!stopSignal) {
+        {
         std::lock_guard<std::mutex> lock(mt);
-        if (current == Red) {
-            std::this_thread::sleep_for(std::chrono::seconds(30));
-            current = Green;
+        if (current == Red) {current = Green;}
+        else if (current == Green) {current = Yellow;}
+        else {current = Red;}
         }
-        else if (state == Green) {
-            std::this_thread::sleep_for(std::chrono::seconds(25));
-            current = Yellow;
-        }
-        else if (state == Yellow) {
-            std::this_thread::sleep_for(std::chrono::seconds(5));
-            current = Red;
-        }
+        std::this_thread::sleep_for(
+                current == Red ? std::chrono::seconds(30) :
+                current == Green ? std::chrono::seconds(25) :
+                std::chrono::seconds(5)
+            );
     }
 }
 void trafficlight::stop() {this->stopSignal = true;}
