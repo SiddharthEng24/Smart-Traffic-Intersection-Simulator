@@ -7,4 +7,4 @@
 #include <iostream>
 
 Vehicle::Vehicle(int id, int dir) {this->id = id; this->dir = dir;}
-Vehicle::getdirection() {return direction;}
+int Vehicle::getdirection() {return direction;}
