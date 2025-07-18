@@ -3,8 +3,8 @@
 //
 
 #include "trafficlight.h"
-#include <chrono>;
-#include <thread>;
+#include <chrono>
+#include <thread>
 //whenever we make the light we're gonna make a thread
 trafficlight::trafficlight(int dir, int start_state) {
     this->direction = dir;
@@ -29,17 +29,11 @@ void trafficlight::changecolour() {
 }
 void trafficlight::stop() {this->stopSignal = true;}
 int trafficlight::getstate() {
-    switch (this->state) {
-        std::lock_guard<std::mutex> lock(mt);
-        case Red:
-            return 0;
-            break;
-        case Green:
-            return 1;
-            break;
-        case Yellow:
-            return 2;
-            break;
+    std::lock_guard<std::mutex> lock(mt);
+    switch (this->current) {
+        case Red:return 0;
+        case Green:return 1;
+        case Yellow:return 2;
         default: return -1;
     }
 }
