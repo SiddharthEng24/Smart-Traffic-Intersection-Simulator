@@ -10,10 +10,11 @@ class Vehicle {
 private:
     int wait_time;
     int id;
-    std::string direction; //N,S,E or W
+    int direction; //1=N,-1=E
+    double speed = 35.7;
 public:
-    Vehicle(id,std::string dir); //constructor
-    getdirection();
+    Vehicle(int id,int dir); //constructor
+    int getdirection();
 };
 
 

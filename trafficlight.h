@@ -10,6 +10,7 @@ private:
     std::string direction; //N,S,E or W
     int timer;
     enum state {Red, Green, Yellow};
+    state state;
 public:
     trafficlight(std::string dir);
     void changecolour();

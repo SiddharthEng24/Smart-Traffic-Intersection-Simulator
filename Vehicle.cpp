@@ -4,7 +4,7 @@
 //
 
 #include "Vehicle.h"
-#inclide <iostream>
+#include <iostream>
 
-Vehicle::Vehicle(std::string dir) {this -> direction = dir;}
+Vehicle::Vehicle(int id, int dir) {this->id = id; this->dir = dir;}
 Vehicle::getdirection() {return direction;}

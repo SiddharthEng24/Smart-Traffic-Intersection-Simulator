@@ -3,3 +3,5 @@
 //
 
 #include "trafficlight.h"
+#include <ctime>;
+
